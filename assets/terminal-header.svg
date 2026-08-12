@@ -1,0 +1,325 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">Markko Emanuel Martins Bretas — animated terminal portfolio</title>
+  <desc id="desc">Animated terminal-style profile banner for GitHub.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070b12"/>
+      <stop offset="52%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#071018"/>
+    </linearGradient>
+
+    <linearGradient id="border" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="28%" stop-color="#7c3aed"/>
+      <stop offset="52%" stop-color="#22c55e"/>
+      <stop offset="78%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="50%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+
+    <radialGradient id="orbCyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity=".24"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="orbPurple" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity=".20"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#94a3b8" stroke-opacity=".045" stroke-width="1"/>
+    </pattern>
+
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="textGlow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="2.1" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Typewriter clipping masks -->
+    <clipPath id="c1"><rect class="reveal reveal1" x="72" y="82" width="0" height="28" rx="2"/></clipPath>
+    <clipPath id="c2"><rect class="reveal reveal2" x="72" y="128" width="0" height="28" rx="2"/></clipPath>
+    <clipPath id="c3"><rect class="reveal reveal3" x="72" y="184" width="0" height="31" rx="2"/></clipPath>
+    <clipPath id="c4"><rect class="reveal reveal4" x="72" y="228" width="0" height="29" rx="2"/></clipPath>
+    <clipPath id="c5"><rect class="reveal reveal5" x="72" y="272" width="0" height="29" rx="2"/></clipPath>
+    <clipPath id="c6"><rect class="reveal reveal6" x="72" y="316" width="0" height="29" rx="2"/></clipPath>
+
+    <style>
+      :root {
+        --fg: #e6edf3;
+        --muted: #8b949e;
+        --cyan: #22d3ee;
+        --green: #34d399;
+        --purple: #a78bfa;
+        --yellow: #facc15;
+        --red: #fb7185;
+        --panel: #0d1117;
+      }
+
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+
+      .window {
+        fill: url(#bg);
+        stroke: #30363d;
+        stroke-width: 1.2;
+      }
+
+      .grid { fill: url(#grid); }
+
+      .topbar { fill: #0d1117; fill-opacity: .94; }
+      .divider { stroke: #30363d; stroke-width: 1; }
+      .title { fill: #9da7b3; font-size: 15px; font-weight: 600; letter-spacing: .2px; }
+      .prompt { fill: var(--cyan); font-size: 20px; font-weight: 700; }
+      .command { fill: #f0f6fc; font-size: 20px; font-weight: 700; }
+      .boot { fill: #7ee787; font-size: 16px; }
+      .name { fill: #f0f6fc; font-size: 25px; font-weight: 800; }
+      .line { fill: #c9d1d9; font-size: 18px; font-weight: 600; }
+      .key { fill: #79c0ff; }
+      .value { fill: #d2a8ff; }
+      .status { fill: #7ee787; font-size: 15px; font-weight: 700; }
+      .footer { fill: #8b949e; font-size: 13px; }
+      .pillText { fill: #7ee787; font-size: 12px; font-weight: 800; letter-spacing: .9px; }
+
+      .animated-border {
+        fill: none;
+        stroke: url(#border);
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-dasharray: 90 580;
+        animation: borderFlow 5.5s linear infinite;
+        filter: url(#softGlow);
+        opacity: .9;
+      }
+
+      .orb1 { animation: drift1 8s ease-in-out infinite alternate; }
+      .orb2 { animation: drift2 10s ease-in-out infinite alternate; }
+
+      .scanline {
+        fill: url(#accent);
+        opacity: 0;
+        animation: scan 5.8s ease-in-out infinite;
+      }
+
+      .pulseDot { animation: pulse 1.8s ease-in-out infinite; transform-origin: center; }
+      .pulseDot2 { animation-delay: .6s; }
+      .pulseDot3 { animation-delay: 1.2s; }
+
+      .reveal1 { animation: type1 12s steps(32, end) infinite; }
+      .reveal2 { animation: type2 12s steps(34, end) infinite; }
+      .reveal3 { animation: type3 12s steps(30, end) infinite; }
+      .reveal4 { animation: type4 12s steps(36, end) infinite; }
+      .reveal5 { animation: type5 12s steps(56, end) infinite; }
+      .reveal6 { animation: type6 12s steps(46, end) infinite; }
+
+      .cursor {
+        fill: #7ee787;
+        opacity: 0;
+        animation: cursor 12s steps(1, end) infinite;
+        filter: url(#textGlow);
+      }
+
+      .badgePulse {
+        animation: badge 2.8s ease-in-out infinite;
+      }
+
+      @keyframes borderFlow {
+        to { stroke-dashoffset: -670; }
+      }
+
+      @keyframes drift1 {
+        from { transform: translate(-30px, -8px) scale(.95); }
+        to   { transform: translate(40px, 18px) scale(1.08); }
+      }
+
+      @keyframes drift2 {
+        from { transform: translate(20px, 18px) scale(1.05); }
+        to   { transform: translate(-35px, -22px) scale(.92); }
+      }
+
+      @keyframes scan {
+        0%, 12% { transform: translateY(0); opacity: 0; }
+        16% { opacity: .10; }
+        56% { opacity: .055; }
+        62%, 100% { transform: translateY(305px); opacity: 0; }
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: .45; transform: scale(.82); }
+        50% { opacity: 1; transform: scale(1.12); }
+      }
+
+      /* Each line remains visible until the loop restarts. */
+      @keyframes type1 {
+        0%, 2% { width: 0; }
+        14%, 96% { width: 560px; }
+        100% { width: 0; }
+      }
+      @keyframes type2 {
+        0%, 15% { width: 0; }
+        27%, 96% { width: 610px; }
+        100% { width: 0; }
+      }
+      @keyframes type3 {
+        0%, 28% { width: 0; }
+        40%, 96% { width: 650px; }
+        100% { width: 0; }
+      }
+      @keyframes type4 {
+        0%, 41% { width: 0; }
+        53%, 96% { width: 650px; }
+        100% { width: 0; }
+      }
+      @keyframes type5 {
+        0%, 54% { width: 0; }
+        70%, 96% { width: 990px; }
+        100% { width: 0; }
+      }
+      @keyframes type6 {
+        0%, 71% { width: 0; }
+        84%, 96% { width: 800px; }
+        100% { width: 0; }
+      }
+
+      @keyframes cursor {
+        0%, 83% { opacity: 0; }
+        84%, 86% { opacity: 1; }
+        87%, 89% { opacity: 0; }
+        90%, 92% { opacity: 1; }
+        93%, 95% { opacity: 0; }
+        96%, 98% { opacity: 1; }
+        99%, 100% { opacity: 0; }
+      }
+
+      @keyframes badge {
+        0%, 100% { opacity: .72; }
+        50% { opacity: 1; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .animated-border, .orb1, .orb2, .scanline, .pulseDot, .cursor, .badgePulse { animation: none !important; }
+        .reveal1, .reveal2, .reveal3, .reveal4, .reveal5, .reveal6 { animation: none !important; width: 1000px; }
+        .cursor { opacity: 1; }
+      }
+
+      @media (prefers-color-scheme: light) {
+        .window { fill: #f6f8fa; stroke: #d0d7de; }
+        .topbar { fill: #ffffff; fill-opacity: .94; }
+        .divider { stroke: #d8dee4; }
+        .grid { opacity: .42; }
+        .title, .footer { fill: #57606a; }
+        .command, .name { fill: #24292f; }
+        .line { fill: #3b4450; }
+        .prompt, .key { fill: #0969da; }
+        .value { fill: #8250df; }
+        .boot, .status, .pillText { fill: #1a7f37; }
+      }
+    </style>
+  </defs>
+
+  <!-- ambient glows -->
+  <ellipse class="orb1" cx="180" cy="80" rx="245" ry="190" fill="url(#orbCyan)"/>
+  <ellipse class="orb2" cx="1030" cy="330" rx="270" ry="210" fill="url(#orbPurple)"/>
+
+  <!-- terminal window -->
+  <rect class="window" x="10" y="10" width="1180" height="410" rx="18"/>
+  <rect class="grid" x="11" y="59" width="1178" height="360" rx="0 0 17 17"/>
+  <rect class="topbar" x="11" y="11" width="1178" height="48" rx="17 17 0 0"/>
+  <line class="divider" x1="11" y1="59" x2="1189" y2="59"/>
+
+  <!-- animated perimeter -->
+  <rect class="animated-border" x="11.5" y="11.5" width="1177" height="407" rx="17"/>
+
+  <!-- macOS-like controls -->
+  <circle cx="36" cy="35" r="6.2" fill="#ff5f57"/>
+  <circle cx="57" cy="35" r="6.2" fill="#febc2e"/>
+  <circle cx="78" cy="35" r="6.2" fill="#28c840"/>
+
+  <!-- title bar -->
+  <text class="mono title" x="600" y="40" text-anchor="middle">makromb@github — ~/portfolio</text>
+
+  <!-- online badge -->
+  <g class="badgePulse">
+    <rect x="1055" y="22" width="104" height="25" rx="12.5" fill="#238636" fill-opacity=".16" stroke="#2ea043" stroke-opacity=".55"/>
+    <circle cx="1071" cy="34.5" r="4" fill="#3fb950"/>
+    <text class="mono pillText" x="1081" y="38.7">ONLINE</text>
+  </g>
+
+  <!-- subtle scanline -->
+  <rect class="scanline" x="20" y="69" width="1160" height="1.4"/>
+
+  <!-- typed terminal content -->
+  <g clip-path="url(#c1)">
+    <text class="mono prompt" x="72" y="104">makromb@github:~$</text>
+    <text class="mono command" x="282" y="104">./portfolio.sh --interactive</text>
+  </g>
+
+  <g clip-path="url(#c2)">
+    <text class="mono boot" x="72" y="150">[✓] profile modules loaded · research environment ready</text>
+  </g>
+
+  <g clip-path="url(#c3)" filter="url(#textGlow)">
+    <text class="mono name" x="72" y="209">&gt; Markko Emanuel Martins Bretas</text>
+  </g>
+
+  <g clip-path="url(#c4)">
+    <text class="mono line" x="72" y="252">
+      <tspan class="key">education</tspan>
+      <tspan fill="#8b949e"> = </tspan>
+      <tspan class="value">Computer Science @ PUC-Rio</tspan>
+    </text>
+  </g>
+
+  <g clip-path="url(#c5)">
+    <text class="mono line" x="72" y="296">
+      <tspan class="key">interests</tspan>
+      <tspan fill="#8b949e"> = </tspan>
+      <tspan class="value">Artificial Intelligence · Quantitative Research · Software Engineering</tspan>
+    </text>
+  </g>
+
+  <g clip-path="url(#c6)">
+    <text class="mono line" x="72" y="340">
+      <tspan class="key">focus</tspan>
+      <tspan fill="#8b949e"> = </tspan>
+      <tspan class="value">Machine Learning · Time Series · LLMs · Quant Finance</tspan>
+    </text>
+  </g>
+
+  <!-- blinking cursor after final command -->
+  <rect class="cursor" x="822" y="320" width="11" height="23" rx="1.5"/>
+
+  <!-- footer telemetry -->
+  <line class="divider" x1="34" y1="372" x2="1166" y2="372" opacity=".75"/>
+
+  <g class="mono footer">
+    <circle class="pulseDot" cx="48" cy="395" r="4.2" fill="#3fb950"/>
+    <text x="61" y="399">branch: main</text>
+
+    <circle class="pulseDot pulseDot2" cx="213" cy="395" r="4.2" fill="#22d3ee"/>
+    <text x="226" y="399">env: research</text>
+
+    <circle class="pulseDot pulseDot3" cx="401" cy="395" r="4.2" fill="#a78bfa"/>
+    <text x="414" y="399">mode: building</text>
+
+    <text class="status" x="1138" y="399" text-anchor="end">STATUS: SHIPPING</text>
+  </g>
+</svg>
